@@ -58,6 +58,22 @@ export interface IProjectOverlay {
     showProjectOverlay: IProjectOverlayState
 }
 
-export interface ICarouselPositionState {
 
+export interface ICarouselButton {
+    type: "prev" | "next";
+    currentPosition: number;
+    onCarouselButtonClick: (type: "prev" | "next") => void;
 }
+
+interface IProjectInfo {
+  name: string,
+  link: string,
+  github: string,
+  images: string[],
+  problem: string[],
+  solution: string[],
+  technologies: string[]
+}
+
+export interface IProjectList extends Array<IProjectInfo>{};
+

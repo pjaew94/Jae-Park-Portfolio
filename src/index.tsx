@@ -11,6 +11,7 @@ import {
 import { motion } from "framer-motion";
 import { WorkSection } from "./pages/home/WorkSection";
 import { ProjectOverlay } from "./components/nonReusable/projectOverlay/ProjectOverlay";
+import { Carousel } from "./components/nonReusable/carousel/Carousel";
 
 function App() {
   // Colors

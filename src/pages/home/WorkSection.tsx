@@ -7,6 +7,7 @@ import {
   showHidingTextVariant,
 } from "./../../animations/index";
 import "../../styles/components/section.scss";
+import { Carousel } from "../../components/nonReusable/carousel/Carousel";
 
 export const WorkSection: React.FC<ISection> = ({
   heading1,
@@ -18,7 +19,7 @@ export const WorkSection: React.FC<ISection> = ({
   paragraph,
 }) => {
   const { ref, inView } = useInView({
-    threshold: 0.7,
+    threshold: 0.4,
   });
 
   const h1Controls = useAnimation();
@@ -62,6 +63,8 @@ export const WorkSection: React.FC<ISection> = ({
           {paragraph}
         </motion.p>
       </div>
+
+      <Carousel />
     </motion.div>
   );
 };
