@@ -66,10 +66,11 @@ export interface ICarouselButton {
 }
 
 interface IProjectInfo {
+  abbreviation: string,
   name: string,
   link: string,
   github: string,
-  images: string[],
+  image: string,
   problem: string[],
   solution: string[],
   technologies: string[]

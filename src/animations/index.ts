@@ -71,6 +71,17 @@ export const carouselVariant = {
     })
 }
 
+export const carouselImageVariant = {
+    dragReset: () => ({
+        x: 0,
+        y: 0,
+        transition: {
+            type: "linear",
+            duration: 0.1
+        }
+    })
+}
+
 export const dummyVariant = {
     
 }
@@ -84,4 +95,41 @@ export const buttonUnderLineVariant = {
             duration: 0.3,
         }
     }
+}
+
+export const scrollGuideVariant = {
+    animate: {
+        x:[-5, 5, -5],
+        transition: {
+            ease: "linear",
+            duration: 1.5,
+            repeat: Infinity
+        }
+    },
+    hide: {
+        opacity: 0,
+        transition: {
+            ease: "linear",
+            duration: 1
+        }
+    }
+}
+
+export const learnMoreVariant = {
+    animate: {
+        scale: 0.8,
+        transition: {
+            ease: "linear",
+            duration: 0.5
+        }
+    },
+    hide: {
+        x: -100,
+        opacity: 0,
+        transition: {
+            ease: "linear",
+            duration: 0.5
+        }
+    }
+
 }

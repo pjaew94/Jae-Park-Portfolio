@@ -4,7 +4,10 @@ import { ISection } from "../../types/interface";
 import { useInView } from "react-intersection-observer";
 
 import "../../styles/components/section.scss";
-import { paragraphVariant, showHidingTextVariant } from "../../animations/index";
+import {
+  paragraphVariant,
+  showHidingTextVariant,
+} from "../../animations/index";
 
 export const HomeSection: React.FC<ISection> = ({
   heading1,
@@ -23,9 +26,7 @@ export const HomeSection: React.FC<ISection> = ({
     if (inView) {
       setComponentInView({ section, textColor, background });
     }
-
-    console.log(componentInView);
-  }, [inView, background, section, textColor, setComponentInView, componentInView]);
+  }, []);
 
   return (
     <motion.div ref={ref} className="home-section section">

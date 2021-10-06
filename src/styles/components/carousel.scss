@@ -1,27 +1,65 @@
+@use "../colors" as *;
+
 .carousel-container {
-    width: 100vw;
+    width: min(calc(65vh * 1.715), 90%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: max(30px, 12vh);
+    padding-top: max(30px, 5vh);
     height: auto;
+
+    .mobile-carousel-guides-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: max(20px, 3vh);
+
+        .project-info-expand-button {
+            h4 {
+                color: $yellow;
+                background: $black;
+                padding: 15px 25px;
+            }
+        }
+
+        .scroll-guide {
+            .scroll-guide-arrow {
+                font-size: clamp(1rem, 1vw, 3rem);
+            }
+        }
+    }
+
+
+
     .carousel {
-        height: max(70vh, 500px);
+        height: max(65vh, 500px);
         width: 100%;
         display: flex;
         justify-content: center;
         position: relative;
+        margin-bottom: max(20px, 3vh);
 
         .carousel-item {
-            width: clamp(50vw, 60vw, 100%);
+            width: 100%;
             height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
+            img {
+                border-radius: 5px;
+                height: 100%;
+            }
+
+           
         }
 
         .carousel-item-hide {
             position: absolute;
             opacity: 0;
+            z-index: -1;
         }
     }
 
@@ -29,7 +67,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 60%;
+        width: 100%;
 
         .carousel-button {
             font-size: 20px;
