@@ -1,0 +1,180 @@
+@use "../colors" as *;
+
+.project-overlay-desktop {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    z-index: -2;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        padding: max(50px, 3%) 2%;
+
+        position: relative;
+        align-items: center;
+        height: clamp(90%, 90%, 90%);
+        width: clamp(30%, 500px, 50%);
+        z-index: 2;
+        background: $white;
+        border-radius: 10px;
+
+        .h1-container {
+            position: relative;
+
+            .h1-hider {
+                height: 110%;
+                width: 105%;
+                position: absolute;
+                z-index: 1;
+                top: 100%;
+                left: -10px;
+                background: $white;
+            }
+        }
+        .tabs-container {
+            width: 90%;
+            margin-top: max(2vh, 20px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+
+            .tab {
+                position: relative;
+                button {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    .tab-expand-line {
+                        position: absolute;
+                        bottom: -3px;
+                        left: 0;
+                        width: 0;
+                        height: 1px;
+                        background: black;
+                        margin-right: 5px;
+                        transition: 0.5s all ease-in-out;
+                        transform-origin: 0%, 50%;
+                    }
+
+                    .expand-line {
+                        width: 100%;
+                    }
+                }
+
+                .tab-hider {
+                    height: 110%;
+                    width: 100%;
+                    position: absolute;
+                    z-index: 2;
+                    top: 112%;
+                    background: $white;
+                }
+            }
+        }
+
+        .texts-container {
+            width: 90%;
+            height: 100%;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: column;
+            padding: max(3vh, 20px) 0;
+            margin: max(2vh, 10px) 0;
+            z-index: 3;
+
+            p {
+                text-align: left;
+                margin-bottom: max(2vh, 10px);
+            }
+
+            .tech-container {
+                margin-bottom: max(2vh, 10px);
+                p {
+                    margin-bottom: 0;
+                }
+                p.tech {
+                    font-weight: 700;
+                }
+            }
+
+            .tech-0 {
+            }
+        }
+
+        .links-container {
+            width: 90%;
+            display: flex;
+            position: relative;
+
+            .link {
+                position: relative;
+                z-index: 5;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    .link-expand-line {
+                        position: absolute;
+                        bottom: -3px;
+                        left: 0;
+                        width: 0;
+                        height: 1px;
+                        background: black;
+                        margin-right: 5px;
+                        transition: 0.5s all ease-in-out;
+                        transform-origin: 0%, 50%;
+                    }
+
+                    .expand-line {
+                        width: 100%;
+                    }
+                }
+                .link-hider {
+                    height: 110%;
+
+                    width: 100%;
+                    position: absolute;
+                    z-index: 2;
+                    top: 112%;
+                    background: $white;
+                }
+            }
+            .link-1 {
+                margin-right: 3vw;
+            }
+
+            .warning {
+                height: auto;
+                width: 100%;
+                border-left: 1px solid $black;
+                padding: 5px max(10px, 2%);
+                margin: max(10px, 2%) 0;
+                background: $white;
+                z-index: 4;
+                bottom: 100%;
+                position: absolute;
+            }
+        }
+    }
+
+    .backdrop {
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+}
+
+.project-overlay-desktop-show {
+    z-index: 10;
+}

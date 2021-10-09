@@ -26,7 +26,7 @@ export const HomeSection: React.FC<ISection> = ({
     if (inView) {
       setComponentInView({ section, textColor, background });
     }
-  }, []);
+  }, [inView]);
 
   return (
     <motion.div ref={ref} className="home-section section">

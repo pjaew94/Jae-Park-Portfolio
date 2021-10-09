@@ -11,7 +11,10 @@ export  const showHidingTextVariant = {
       
             delay: custom
         }
-    })
+    }),
+    hide: {
+        y: "100%"
+    }
 }
 
 export const paragraphVariant = {
@@ -28,7 +31,16 @@ export const paragraphVariant = {
             bounce: 0,
             delay: custom
         }
-    })
+    }),
+    exit: {
+        y: "60%",
+        opacity: 0,
+        transition: {
+            type: 'spring',
+            duration: 0.3,
+            bounce: 0,
+        }
+    }
 }
 
 
@@ -79,6 +91,15 @@ export const carouselImageVariant = {
             type: "linear",
             duration: 0.1
         }
+    }),
+    onHover: (custom: boolean) => ({
+        y: -10,
+        boxShadow: custom ? "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" : "",
+        transition: {
+            type: 'spring',
+            bounce: 0,
+            duration: 0.5
+        }
     })
 }
 
@@ -103,7 +124,8 @@ export const scrollGuideVariant = {
         transition: {
             ease: "linear",
             duration: 1.5,
-            repeat: Infinity
+            repeat: Infinity,
+            repeatDelay: 1
         }
     },
     hide: {
@@ -132,4 +154,72 @@ export const learnMoreVariant = {
         }
     }
 
+}
+
+
+export const backdropVariant = {
+    fadeIn: {
+        background: "rgba(0, 0, 0, 0.7)",
+        transition: {
+            ease: 'linear',
+            duration: 0.5
+        }
+    },
+    fadeOut: {
+        background: "rgba(0, 0, 0, 0)",
+        transition: {
+            ease: 'linear',
+            duration: 0.5
+        }
+    }
+}
+
+
+export const contentVariant = {
+    initial: {
+        opacity: 0,
+        y: 100
+    },
+    fadeIn: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            ease: 'easeInOut',
+            duration: 0.5,
+            delay: 0.3
+        }
+    },
+    fadeOut: {
+        opacity: 0,
+        y: 100,
+        transition: {
+            ease: 'easeInOut',
+            duration: 0.2
+        }
+    }
+}
+
+export const warningVariant = {
+    initial: {
+        opacity: 0,
+        y: "20%"
+    },
+    animate: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            type: 'spring',
+            duration: 0.9,
+            bounce: 0,
+        }
+    },
+    hide: {
+        opacity: 0,
+        y: "20%",
+        transition: {
+            type: 'spring',
+            duration: 0.4,
+            bounce: 0,
+        }
+    }
 }

@@ -15,6 +15,8 @@ export const WorkSection: React.FC<ISection> = ({
   section,
   background,
   setComponentInView,
+  setShowProjectOverlay,
+  showProjectOverlay,
   componentInView,
   paragraph,
 }) => {
@@ -31,7 +33,7 @@ export const WorkSection: React.FC<ISection> = ({
         paragraphControls.start("animate");
       setComponentInView({ section, textColor, background });
     }
-  }, [inView, background, h1Controls, paragraphControls, section, setComponentInView, textColor]);
+  }, [inView, background, h1Controls, paragraphControls, section, setComponentInView , textColor]);
 
   return (
     <motion.div ref={ref} className="work-section section">
@@ -51,7 +53,7 @@ export const WorkSection: React.FC<ISection> = ({
               background: componentInView.background,
               transition: "0.8s ease-in-out",
             }}
-          ></motion.div>
+          />
         </div>
 
         <motion.p
@@ -64,7 +66,10 @@ export const WorkSection: React.FC<ISection> = ({
         </motion.p>
       </div>
 
-      <Carousel />
+      <Carousel 
+        setShowProjectOverlay={setShowProjectOverlay!}
+        showProjectOverlay={showProjectOverlay!}
+      />
     </motion.div>
   );
 };

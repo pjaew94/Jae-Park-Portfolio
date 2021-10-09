@@ -1,15 +1,16 @@
+import { AnimationControls } from "framer-motion";
 import { Dispatch, SetStateAction } from "react";
 
 type heading1 = {
-    [key: string]: string
-}
+  [key: string]: string;
+};
 type sectionInfo = {
-    heading1: heading1,
-    paragraph?: string,
-    section: IScrollState["section"],
-    textColor: IScrollState["textColor"]
-    background: IScrollState["background"]
-}
+  heading1: heading1;
+  paragraph?: string;
+  section: IScrollState["section"];
+  textColor: IScrollState["textColor"];
+  background: IScrollState["background"];
+};
 
 export interface IScrollState {
   section: "home" | "work" | "about" | "resume" | "contact";
@@ -17,9 +18,8 @@ export interface IScrollState {
   textColor: "white" | "black";
 }
 
-
 export interface ISectionInfo {
-    [key: string] : sectionInfo
+  [key: string]: sectionInfo;
 }
 
 export interface ISection {
@@ -27,12 +27,12 @@ export interface ISection {
   paragraph?: string;
   section: IScrollState["section"];
   textColor: IScrollState["textColor"];
-  background: IScrollState["background"]
+  background: IScrollState["background"];
   setComponentInView: Dispatch<SetStateAction<IScrollState>>;
   componentInView: IScrollState;
-  setProjectOverlay?: Dispatch<SetStateAction<IProjectOverlayState>>;
+  setShowProjectOverlay?: Dispatch<SetStateAction<IProjectOverlayState>>;
+  showProjectOverlay?: IProjectOverlayState;
 }
-
 
 export interface IButton {
   text: string;
@@ -40,41 +40,61 @@ export interface IButton {
   type: "one" | "two";
 }
 
-
 export interface IProjectOverlayState {
-    show: boolean;
-    problem: string[] | null;
-    solution: string[] | null;
-    result: string[]| null;
-    technologies: string[]| null;
-    learned: string[]| null;
-    name: string| null;
-    link: string| null;
-    github: string| null;
-    type: string| null;
+  show: "mobile" | "desktop" | false;
+  problem: string[];
+  solution: string[];
+  technologies: { tech: string; desc: string }[];
+  name: string;
+  link: string;
+  github: string;
+  warning?: string;
 }
 
-export interface IProjectOverlay {
-    showProjectOverlay: IProjectOverlayState
+export interface ICarousel {
+  setShowProjectOverlay: Dispatch<SetStateAction<IProjectOverlayState>>;
+  showProjectOverlay: IProjectOverlayState;
 }
 
+export interface IProjectOverlay extends ICarousel {}
 
 export interface ICarouselButton {
-    type: "prev" | "next";
-    currentPosition: number;
-    onCarouselButtonClick: (type: "prev" | "next") => void;
+  type: "prev" | "next";
+  currentPosition: number;
+  onCarouselButtonClick: (type: "prev" | "next") => void;
 }
 
-interface IProjectInfo {
-  abbreviation: string,
-  name: string,
-  link: string,
-  github: string,
-  image: string,
-  problem: string[],
-  solution: string[],
-  technologies: string[]
+export interface IProjectInfo {
+  abbreviation: string;
+  name: string;
+  link: string;
+  github: string;
+  image: string;
+  problem: string[];
+  solution: string[];
+  technologies: { tech: string; desc: string }[];
+  warning?: string;
 }
 
-export interface IProjectList extends Array<IProjectInfo>{};
+export interface IProjectList extends Array<IProjectInfo> {}
 
+export interface ILinkListItem {
+  text: string;
+  link: string;
+}
+
+export interface ILink {
+  text: string;
+  link: string;
+  index: number;
+  showHidingTextControl: AnimationControls;
+  setShowWarning: Dispatch<SetStateAction<boolean>>
+}
+
+export interface ITabBar {
+  index: number;
+  tab: string;
+  selectedTab: string | null;
+  setSelectedTab: Dispatch<SetStateAction<string | null>>;
+  showHidingTextControl: AnimationControls;
+}

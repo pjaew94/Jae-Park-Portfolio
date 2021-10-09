@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import "./index.scss";
-import { HomeSection } from  "./pages/home/HomeSection";
+import { HomeSection } from "./pages/home/HomeSection";
 import {
   IScrollState,
   ISectionInfo,
   IProjectOverlayState,
 } from "./types/interface";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { WorkSection } from "./pages/home/WorkSection";
-import { ProjectOverlay } from "./components/nonReusable/projectOverlay/ProjectOverlay";
-import { Carousel } from "./components/nonReusable/carousel/Carousel";
+import { ProjectOverlayDesktop } from "./components/nonReusable/projectOverlay/ProjectOverlayDeskTop";
 
 function App() {
   // Colors
@@ -34,15 +33,13 @@ function App() {
   const [showProjectOverlay, setShowProjectOverlay] =
     useState<IProjectOverlayState>({
       show: false,
-      problem: null,
-      solution: null,
-      result: null,
-      technologies: null,
-      learned: null,
-      name: null,
-      link: null,
-      github: null,
-      type: null,
+      problem: [],
+      solution: [],
+      technologies: [],
+      name: "",
+      link: "",
+      github: "",
+      warning: ""
     });
 
   // Section Info
@@ -65,37 +62,49 @@ function App() {
     },
   };
 
+  useEffect(() => {
+    if(showProjectOverlay.show !== false) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showProjectOverlay])
+
   return (
-    <motion.div
-      className="app background"
-      style={{
-        background: componentInView.background,
-        transition: "0.8s ease-in-out",
-      }}
-    >
-      {/* <ProjectOverlay 
+    <AnimatePresence>
+      <motion.div
+        className="app background"
+        style={{
+          background: componentInView.background,
+          transition: "0.8s ease-in-out",
+        }}
+      >
+        <ProjectOverlayDesktop
           showProjectOverlay={showProjectOverlay}
-      /> */}
-      <HomeSection
-        heading1={sectionInfo.homeSection.heading1}
-        paragraph={sectionInfo.homeSection.paragraph}
-        section={sectionInfo.homeSection.section}
-        textColor={sectionInfo.homeSection.textColor}
-        background={sectionInfo.homeSection.background}
-        setComponentInView={setComponentInView}
-        componentInView={componentInView}
-      />
-      <WorkSection
-        heading1={sectionInfo.workSection.heading1}
-        paragraph={sectionInfo.workSection.paragraph}
-        section={sectionInfo.workSection.section}
-        textColor={sectionInfo.workSection.textColor}
-        background={sectionInfo.workSection.background}
-        setComponentInView={setComponentInView}
-        componentInView={componentInView}
-        setProjectOverlay={setShowProjectOverlay}
-      />
-    </motion.div>
+          setShowProjectOverlay={setShowProjectOverlay}
+        />
+        <HomeSection
+          heading1={sectionInfo.homeSection.heading1}
+          paragraph={sectionInfo.homeSection.paragraph}
+          section={sectionInfo.homeSection.section}
+          textColor={sectionInfo.homeSection.textColor}
+          background={sectionInfo.homeSection.background}
+          setComponentInView={setComponentInView}
+          componentInView={componentInView}
+        />
+        <WorkSection
+          heading1={sectionInfo.workSection.heading1}
+          paragraph={sectionInfo.workSection.paragraph}
+          section={sectionInfo.workSection.section}
+          textColor={sectionInfo.workSection.textColor}
+          background={sectionInfo.workSection.background}
+          setComponentInView={setComponentInView}
+          componentInView={componentInView}
+          setShowProjectOverlay={setShowProjectOverlay!}
+          showProjectOverlay={showProjectOverlay!}
+        />
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
