@@ -32,6 +32,8 @@ export interface ISection {
   componentInView: IScrollState;
   setShowProjectOverlay?: Dispatch<SetStateAction<IProjectOverlayState>>;
   showProjectOverlay?: IProjectOverlayState;
+  isMobile?: boolean;
+  isTablet?: boolean;
 }
 
 export interface IButton {
@@ -54,6 +56,8 @@ export interface IProjectOverlayState {
 export interface ICarousel {
   setShowProjectOverlay: Dispatch<SetStateAction<IProjectOverlayState>>;
   showProjectOverlay: IProjectOverlayState;
+  isMobile: boolean,
+  isTablet: boolean
 }
 
 export interface IProjectOverlay extends ICarousel {}
@@ -89,6 +93,7 @@ export interface ILink {
   index: number;
   showHidingTextControl: AnimationControls;
   setShowWarning: Dispatch<SetStateAction<boolean>>
+  isMobile?: boolean;
 }
 
 export interface ITabBar {
@@ -97,4 +102,5 @@ export interface ITabBar {
   selectedTab: string | null;
   setSelectedTab: Dispatch<SetStateAction<string | null>>;
   showHidingTextControl: AnimationControls;
+  isMobile?: boolean;
 }

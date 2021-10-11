@@ -9,6 +9,7 @@ export const Link: React.FC<ILink> = ({
   index,
   showHidingTextControl,
   setShowWarning,
+  isMobile
 }) => {
   const [isHovered, setHovered] = useState(false);
 
@@ -36,7 +37,7 @@ export const Link: React.FC<ILink> = ({
         variants={showHidingTextVariant}
         initial="initial"
         animate={showHidingTextControl}
-        custom={1.4}
+        custom={isMobile ?  1 : 1.4}
       >
         <motion.div
           className={`link-expand-line ${isHovered && "expand-line"}`}

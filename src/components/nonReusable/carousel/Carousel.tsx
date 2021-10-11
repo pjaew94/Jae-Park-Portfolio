@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { useMediaQuery } from "react-responsive";
 import { PositionIndicator } from "./PositionIndicator";
 import { CarouselButton } from "./CarouselButton";
 
@@ -27,22 +26,13 @@ import { IconContext } from "react-icons";
 export const Carousel: React.FC<ICarousel> = ({
   setShowProjectOverlay,
   showProjectOverlay,
+  isMobile,
+  isTablet
 }) => {
   // Animation Set Up
   const carouselItemControls = useAnimation();
   const carouselImageControls = useAnimation();
 
-  // Media Query
-  const isTablet = useMediaQuery({
-    maxDeviceWidth: 1024,
-    minDeviceWidth: 769,
-    orientation: "portrait",
-  });
-
-  const isMobile = useMediaQuery({
-    maxDeviceWidth: 768,
-    orientation: "portrait"
-  })
 
   // List of projects with its information
   let projectList: IProjectList = [
@@ -63,20 +53,59 @@ export const Carousel: React.FC<ICarousel> = ({
         "Since launch, the church received thousands in donations and gained major recognition from locals. Through the extra donations, the church was able to fund tens of teachers and build 3 schools in haiti and increase weekly food donations from 100 bags to 200 bags.",
       ],
       technologies: [
-        {tech: "React", desc: "Optimal front-end framework for easy implementation and maintainability"},
-        {tech: "Redux", desc: "Global state manager for simpler readability and maintenance"},
-        {tech: "NodeJS", desc: "Effortless method of developing fast web servers for the project"},
-        {tech: "ExpressJS", desc: "Minimal framework for NodeJS that provides great performance as well as scalability"},
-        {tech: "MongoDB", desc: "Great database for storing and mutating undemanding data sets"},
-        {tech: "Mongoose", desc: "No-brainer pair for MongoDB for seamless data management and schema validation"},
-        {tech: "Amazon S3", desc: "Exceptional cloud storage for media files to increase the website's performance"},
-        {tech: "Stripe", desc: "Online payment processing for variety of payment methods for accepting donations"},
-        {tech: "Paypal Dev.", desc: "Implemented as some donors may want to PayPal for the transaction"},
-        {tech: "Styled-Components", desc: "Component-level styling library chosen to test it's implementation efficiency against my ideal styling method (SCSS)"},
-        {tech: "RESTful API", desc: "Used to allow client and the server to evolve individually"},
-        {tech: "Netlify", desc: "Amazing platform to host the client side of application - Avoided hosting client on Heroku, as Heroku's IP address evolves based on activity of site, which produces abysmal rendering times"},
-        {tech: "Heroku", desc: "Used to host server side of application - Simple method of creating a server that runs 24/7"},
-      ]
+        {
+          tech: "React",
+          desc: "Optimal front-end framework for easy implementation and maintainability",
+        },
+        {
+          tech: "Redux",
+          desc: "Global state manager for simpler readability and maintenance",
+        },
+        {
+          tech: "NodeJS",
+          desc: "Effortless method of developing fast web servers for the project",
+        },
+        {
+          tech: "ExpressJS",
+          desc: "Minimal framework for NodeJS that provides great performance as well as scalability",
+        },
+        {
+          tech: "MongoDB",
+          desc: "Great database for storing and mutating undemanding data sets",
+        },
+        {
+          tech: "Mongoose",
+          desc: "No-brainer pair for MongoDB for seamless data management and schema validation",
+        },
+        {
+          tech: "Amazon S3",
+          desc: "Exceptional cloud storage for media files to increase the website's performance",
+        },
+        {
+          tech: "Stripe",
+          desc: "Online payment processing for variety of payment methods for accepting donations",
+        },
+        {
+          tech: "Paypal Dev.",
+          desc: "Implemented as some donors may want to PayPal for the transaction",
+        },
+        {
+          tech: "Styled-Components",
+          desc: "Component-level styling library chosen to test it's implementation efficiency against my ideal styling method (SCSS)",
+        },
+        {
+          tech: "RESTful API",
+          desc: "Used to allow client and the server to evolve individually",
+        },
+        {
+          tech: "Netlify",
+          desc: "Amazing platform to host the client side of application - Avoided hosting client on Heroku, as Heroku's IP address evolves based on activity of site, which produces abysmal rendering times",
+        },
+        {
+          tech: "Heroku",
+          desc: "Used to host server side of application - Simple method of creating a server that runs 24/7",
+        },
+      ],
     },
     {
       abbreviation: "jlcAcademy",
@@ -93,19 +122,53 @@ export const Carousel: React.FC<ICarousel> = ({
         "The web application increased homework completion from merely 45% to astounding 96% in a span of few weeks.",
       ],
       technologies: [
-        {tech: "React", desc: "Optimal front-end framework for easy implementation and maintainability"},
-        {tech: "Redux", desc: "Global state manager for simpler readability and maintenance"},
-        {tech: "NodeJS", desc: "Effortless method of developing fast web servers for the project"},
-        {tech: "ExpressJS", desc: "Minimal framework for NodeJS that provides great performance as well as scalability"},
-        {tech: "MongoDB", desc: "Great database for storing and mutating undemanding data sets"},
-        {tech: "Mongoose", desc: "No-brainer pair for MongoDB for seamless data management and schema validation"},
-        {tech: "Axios", desc: "Exceptional library for making API calls as it allows HTTP request interception"},
-        {tech: "SCSS", desc: "Fabulous way of styling the application as it provides extra functions for great maintainability and readability"},
-        {tech: "RESTful API", desc: "Used to allow client and the server to evolve individually"},
-        {tech: "Netlify", desc: "Amazing platform to host the client side of application - Avoided hosting client on Heroku, as Heroku's IP address evolves based on activity of site, which produces abysmal rendering times"},
-        {tech: "Heroku", desc: "Used to host server side of application - Simple method of creating a server that runs 24/7"},
+        {
+          tech: "React",
+          desc: "Optimal front-end framework for easy implementation and maintainability",
+        },
+        {
+          tech: "Redux",
+          desc: "Global state manager for simpler readability and maintenance",
+        },
+        {
+          tech: "NodeJS",
+          desc: "Effortless method of developing fast web servers for the project",
+        },
+        {
+          tech: "ExpressJS",
+          desc: "Minimal framework for NodeJS that provides great performance as well as scalability",
+        },
+        {
+          tech: "MongoDB",
+          desc: "Great database for storing and mutating undemanding data sets",
+        },
+        {
+          tech: "Mongoose",
+          desc: "No-brainer pair for MongoDB for seamless data management and schema validation",
+        },
+        {
+          tech: "Axios",
+          desc: "Exceptional library for making API calls as it allows HTTP request interception",
+        },
+        {
+          tech: "SCSS",
+          desc: "Fabulous way of styling the application as it provides extra functions for great maintainability and readability",
+        },
+        {
+          tech: "RESTful API",
+          desc: "Used to allow client and the server to evolve individually",
+        },
+        {
+          tech: "Netlify",
+          desc: "Amazing platform to host the client side of application - Avoided hosting client on Heroku, as Heroku's IP address evolves based on activity of site, which produces abysmal rendering times",
+        },
+        {
+          tech: "Heroku",
+          desc: "Used to host server side of application - Simple method of creating a server that runs 24/7",
+        },
       ],
-      warning: "If you would like to test the website, please feel free use the following credentials: User: guest@jlcacademy.com | Password: guest123"
+      warning:
+        "If you would like to test the website, please feel free use the following credentials: User: guest@jlcacademy.com | Password: guest123",
     },
   ];
 
@@ -159,19 +222,19 @@ export const Carousel: React.FC<ICarousel> = ({
 
   // Function for opening project overlay desktop when image is clicked
   const openProjectOverlay = (projectInfo: IProjectInfo): void => {
-    const { problem, solution, name, link, github, technologies, warning } = projectInfo;
-    if (!isMobile) {
-      setShowProjectOverlay({
-        show: "desktop",
-        problem,
-        solution,
-        name,
-        link,
-        github,
-        technologies,
-        warning
-      });
-    }
+    const { problem, solution, name, link, github, technologies, warning } =
+      projectInfo;
+
+    setShowProjectOverlay({
+      show: isMobile ? "mobile" : "desktop",
+      problem,
+      solution,
+      name,
+      link,
+      github,
+      technologies,
+      warning,
+    });
   };
 
   const { width, height } = useWindowDimensions();
@@ -187,7 +250,7 @@ export const Carousel: React.FC<ICarousel> = ({
 
   return (
     <motion.div className="carousel-container">
-      {isTablet && (
+      {isTablet || isMobile ? (
         <div className="mobile-carousel-guides-container">
           <motion.button
             className="project-info-expand-button"
@@ -207,7 +270,7 @@ export const Carousel: React.FC<ICarousel> = ({
             </IconContext.Provider>
           </motion.div>
         </div>
-      )}
+      ) : null}
       <motion.div className="carousel">
         {projectList.map((item, i) => {
           return (
@@ -223,7 +286,7 @@ export const Carousel: React.FC<ICarousel> = ({
                 className={item.abbreviation}
                 variants={carouselImageVariant}
                 animate={carouselImageControls}
-                drag={isTablet ? "x" : false}
+                drag={isTablet || isMobile ? "x" : false}
                 dragElastic={0.1}
                 dragConstraints={{ left: width - imageHeight, right: 0 }}
                 src={item.image}

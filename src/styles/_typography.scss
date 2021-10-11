@@ -1,4 +1,5 @@
 @use './colors';
+@use './variables' as var;
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 
@@ -41,10 +42,17 @@ p {
 }
 
 .desktop-project-name{
-    font-size: clamp(4.2rem, 4vw, 9rem);
+    font-size: clamp(3.5rem, 4vw, 9rem);
 }
 
 .warning {
     font-family: 'Crimson Text', serif;
     font-size: clamp(0.8rem, 0.8vw, 2rem);
+}
+
+
+@media only screen and (min-width: var.$tablet-min) and (max-width: var.$tablet-max) {
+    p {
+        line-height: clamp(2rem, 3.4vw, 10rem);
+    }
 }

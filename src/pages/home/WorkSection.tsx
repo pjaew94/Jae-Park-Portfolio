@@ -19,6 +19,8 @@ export const WorkSection: React.FC<ISection> = ({
   showProjectOverlay,
   componentInView,
   paragraph,
+  isMobile,
+  isTablet
 }) => {
   const { ref, inView } = useInView({
     threshold: 0.4,
@@ -69,6 +71,8 @@ export const WorkSection: React.FC<ISection> = ({
       <Carousel 
         setShowProjectOverlay={setShowProjectOverlay!}
         showProjectOverlay={showProjectOverlay!}
+        isMobile={isMobile!}
+        isTablet={isTablet!}
       />
     </motion.div>
   );

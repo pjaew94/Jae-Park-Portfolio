@@ -9,6 +9,7 @@ export const TabBar: React.FC<ITabBar> = ({
   selectedTab,
   setSelectedTab,
   showHidingTextControl,
+  isMobile
 }) => {
   const [isHovered, setHovered] = useState(false);
 
@@ -21,7 +22,7 @@ export const TabBar: React.FC<ITabBar> = ({
         variants={showHidingTextVariant}
         initial="initial"
         animate={showHidingTextControl}
-        custom={1.2}
+        custom={isMobile ? 0.8 : 1.2}
       >
         <motion.div
           className={`tab-expand-line ${

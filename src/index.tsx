@@ -11,6 +11,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { WorkSection } from "./pages/home/WorkSection";
 import { ProjectOverlayDesktop } from "./components/nonReusable/projectOverlay/ProjectOverlayDeskTop";
+import { useMediaQuery } from "react-responsive";
 
 function App() {
   // Colors
@@ -70,6 +71,21 @@ function App() {
     }
   }, [showProjectOverlay])
 
+
+    // Media Query
+    const isTablet = useMediaQuery({
+      maxDeviceWidth: 1024,
+      minDeviceWidth: 768,
+      orientation: "portrait",
+    });
+  
+    const isMobile = useMediaQuery({
+      maxDeviceWidth: 767,
+      orientation: "portrait",
+    });
+
+
+
   return (
     <AnimatePresence>
       <motion.div
@@ -82,6 +98,8 @@ function App() {
         <ProjectOverlayDesktop
           showProjectOverlay={showProjectOverlay}
           setShowProjectOverlay={setShowProjectOverlay}
+          isMobile={isMobile}
+          isTablet={isTablet}
         />
         <HomeSection
           heading1={sectionInfo.homeSection.heading1}
@@ -102,6 +120,8 @@ function App() {
           componentInView={componentInView}
           setShowProjectOverlay={setShowProjectOverlay!}
           showProjectOverlay={showProjectOverlay!}
+          isMobile={isMobile}
+          isTablet={isTablet}
         />
       </motion.div>
     </AnimatePresence>

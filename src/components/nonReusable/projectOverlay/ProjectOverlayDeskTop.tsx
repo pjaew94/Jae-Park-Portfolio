@@ -8,15 +8,21 @@ import {
   showHidingTextVariant,
   paragraphVariant,
   warningVariant,
+  slideInProjectOverLayMobileVariant,
 } from "./../../../animations/index";
 import { TabBar } from "./TabBar";
 import { ILinkListItem } from "./../../../types/interface";
 import { Link } from "./Link";
 import { setTimeout } from "timers";
 
+import { IconContext } from "react-icons/lib";
+import { IoIosArrowBack } from "react-icons/io";
+
 export const ProjectOverlayDesktop: React.FC<IProjectOverlay> = ({
   showProjectOverlay,
   setShowProjectOverlay,
+  isMobile,
+  isTablet,
 }) => {
   const { show, problem, solution, technologies, name, link, github, warning } =
     showProjectOverlay;
@@ -27,16 +33,26 @@ export const ProjectOverlayDesktop: React.FC<IProjectOverlay> = ({
   const backdropControls = useAnimation();
   const contentControls = useAnimation();
   const showHidingTextControl = useAnimation();
+  const slideInProjectOverLayMobileControls = useAnimation();
+  const warningControls = useAnimation();
 
   useEffect(() => {
     if (show === "desktop") {
       backdropControls.start("fadeIn");
       contentControls.start("fadeIn");
       showHidingTextControl.start("animate");
-
       setTimeout(() => {
         setSelectedTab("Problem");
       }, 1700);
+    }
+    if (show === "mobile") {
+      slideInProjectOverLayMobileControls.start("slideIn");
+      warningControls.start('animate')
+      showHidingTextControl.start("animate");
+
+      setTimeout(() => {
+        setSelectedTab("Problem");
+      }, 1500);
     }
   }, [show]);
 
@@ -53,7 +69,11 @@ export const ProjectOverlayDesktop: React.FC<IProjectOverlay> = ({
   ];
 
   const removeOverlay = async () => {
-    await contentControls.start("fadeOut");
+    if (isMobile) {
+      await slideInProjectOverLayMobileControls.start("slideOut");
+      warningControls.start('hide');
+    }
+    if (!isMobile) await contentControls.start("fadeOut");
     await backdropControls.start("fadeOut");
     await showHidingTextControl.start("hide");
     setShowProjectOverlay({ ...showProjectOverlay, show: false });
@@ -63,12 +83,28 @@ export const ProjectOverlayDesktop: React.FC<IProjectOverlay> = ({
   return (
     <motion.div
       className={`project-overlay-desktop ${
-        show === "desktop" && "project-overlay-desktop-show"
+        show === "desktop" || show === "mobile"
+          ? "project-overlay-desktop-show"
+          : null
       }`}
+      variants={slideInProjectOverLayMobileVariant}
+      initial={isMobile && "initial"}
+      animate={slideInProjectOverLayMobileControls}
     >
+      {isMobile && (
+        <motion.button
+          className="back-arrow-button"
+          onClick={() => removeOverlay()}
+          whileTap={{ scale: 0.8 }}
+        >
+          <IconContext.Provider value={{ className: "back-arrow" }}>
+            <IoIosArrowBack />
+          </IconContext.Provider>
+        </motion.button>
+      )}
       <motion.div
         className="content"
-        initial="initial"
+        initial={!isMobile && "initial"}
         variants={contentVariant}
         animate={contentControls}
       >
@@ -78,7 +114,7 @@ export const ProjectOverlayDesktop: React.FC<IProjectOverlay> = ({
             variants={showHidingTextVariant}
             initial="initial"
             animate={showHidingTextControl}
-            custom={1}
+            custom={isMobile ? 0.5 : 1}
           >
             {name}
           </motion.h4>
@@ -101,6 +137,7 @@ export const ProjectOverlayDesktop: React.FC<IProjectOverlay> = ({
                 selectedTab={selectedTab}
                 setSelectedTab={setSelectedTab}
                 showHidingTextControl={showHidingTextControl}
+                isMobile={isMobile}
               />
             );
           })}
@@ -166,19 +203,29 @@ export const ProjectOverlayDesktop: React.FC<IProjectOverlay> = ({
                 index={i}
                 showHidingTextControl={showHidingTextControl}
                 setShowWarning={setShowWarning}
+                isMobile={isMobile}
               />
             );
           })}
-        {warning && (
-          <motion.div
-            className="warning"
-            initial="initial"
-            animate={showWarning ? "animate" : "hide"}
-            variants={warningVariant}
-          >
-            {warning}
-          </motion.div>
-        )}
+          {isMobile && warning ?  <motion.div
+              className="warning"
+              initial="initial"
+              animate={warningControls}
+              variants={warningVariant}
+              custom={1.1}
+            >
+              {warning}
+            </motion.div>: null}
+          {warning && (
+            <motion.div
+              className="warning"
+              initial="initial"
+              animate={showWarning ? "animate" : "hide"}
+              variants={warningVariant}
+            >
+              {warning}
+            </motion.div>
+          )}
         </div>
       </motion.div>
 
