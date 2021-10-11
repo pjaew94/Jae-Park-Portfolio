@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { WorkSection } from "./pages/home/WorkSection";
 import { ProjectOverlayDesktop } from "./components/nonReusable/projectOverlay/ProjectOverlayDeskTop";
 import { useMediaQuery } from "react-responsive";
+import { AboutSection } from './pages/home/AboutSection';
 
 function App() {
   // Colors
@@ -48,7 +49,7 @@ function App() {
     homeSection: {
       heading1: { line1: "Full Stack", line2: "Developer" },
       paragraph:
-        "I am a developer who welcomes any opportunities to solve real world problems with my continually growing skill set. As an engineer, I am constantly eager to learn new technologies, build applications, and make an impact in our societies. Some of my work include a donation website for a non-profit church organization as well as a educational platform application for students in saturday school.",
+        "I am a developer who welcomes any opportunities to solve real world problems with my continually growing skill set. As an engineer, I am constantly eager to learn new technologies, build applications, and make an impact in our communities. Some of my work include a donation website for a non-profit church organization as well as a educational platform application for students in saturday school.",
       section: "home",
       background: colors["white"],
       textColor: "black",
@@ -61,6 +62,13 @@ function App() {
       background: colors["yellow"],
       textColor: "black",
     },
+    aboutSection: {
+      heading1: { line1: "About Me"},
+      paragraph: "",
+      section: "about",
+      background: colors["white"],
+      textColor: "black"
+    }
   };
 
   useEffect(() => {
@@ -122,6 +130,15 @@ function App() {
           showProjectOverlay={showProjectOverlay!}
           isMobile={isMobile}
           isTablet={isTablet}
+        />
+        <AboutSection 
+          heading1={sectionInfo.aboutSection.heading1}
+          paragraph={sectionInfo.aboutSection.paragraph}
+          section={sectionInfo.aboutSection.section}
+          textColor={sectionInfo.aboutSection.textColor}
+          background={sectionInfo.aboutSection.background}
+          setComponentInView={setComponentInView}
+          componentInView={componentInView}
         />
       </motion.div>
     </AnimatePresence>

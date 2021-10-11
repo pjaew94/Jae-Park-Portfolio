@@ -23,7 +23,7 @@ export const WorkSection: React.FC<ISection> = ({
   isTablet
 }) => {
   const { ref, inView } = useInView({
-    threshold: 0.4,
+    threshold: [0.4, 0.9]
   });
 
   const h1Controls = useAnimation();

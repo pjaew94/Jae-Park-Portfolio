@@ -1,0 +1,68 @@
+@use '../variables' as var;
+
+.about-info-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60vw;
+    height: auto;
+
+    .about-info-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        min-height: calc(70vw * .5);
+        padding: 5%;
+
+        .about-img-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            width: 50%;
+            img {
+                width: 100%;
+                z-index: 2;
+            }
+            .about-img-hider {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 100%;
+                left: 0;
+                z-index: 2;
+            }
+        }
+
+        .about-info-title {
+            z-index: 2;
+            margin: max(40px, 3vh) 0 max(20px, 2.5vh) 0;
+        }
+
+        p {
+            padding: 0 5%;
+        }
+    }
+}
+
+
+@media only screen and (min-width: var.$mobile-min) and (max-width: var.$mobile-max) {
+    .about-info-cards-container {
+        width: 100%;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        .about-info-card {
+            width: 100%;
+            min-height: none;
+        }
+    }
+}
+
+@media only screen and (min-width: var.$tablet-min) and (max-width: var.$tablet-max) {
+    .about-info-cards-container {
+        width: 90vw;
+        .about-info-card {
+            padding: 5% 2%;
+        }
+    }
+}

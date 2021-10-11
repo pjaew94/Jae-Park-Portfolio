@@ -45,6 +45,15 @@ p {
     font-size: clamp(3.5rem, 4vw, 9rem);
 }
 
+.about-info-title {
+    font-size: clamp(1.3rem, 1.3vw, 3rem);
+}
+
+.about-info-text {
+    font-size: clamp(1rem, 0.9vw , 2.5rem);
+    line-height: clamp(1.9rem, 3vh, 10rem);
+}
+
 .warning {
     font-family: 'Crimson Text', serif;
     font-size: clamp(0.8rem, 0.8vw, 2rem);
@@ -54,5 +63,9 @@ p {
 @media only screen and (min-width: var.$tablet-min) and (max-width: var.$tablet-max) {
     p {
         line-height: clamp(2rem, 3.4vw, 10rem);
+    }
+
+    .about-info-text {
+        line-height: clamp(1.8rem, 2.8vh, 10rem);
     }
 }

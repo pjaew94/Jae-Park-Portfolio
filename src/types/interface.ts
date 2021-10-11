@@ -104,3 +104,10 @@ export interface ITabBar {
   showHidingTextControl: AnimationControls;
   isMobile?: boolean;
 }
+
+export interface IAboutInfo {
+  section: string,
+  text: string,
+  img: string,
+  componentInView?: IScrollState
+}
